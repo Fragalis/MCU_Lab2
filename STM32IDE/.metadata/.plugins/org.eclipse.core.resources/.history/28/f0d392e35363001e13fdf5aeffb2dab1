@@ -250,7 +250,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		index_led = index_led % 4;
 	}
 	if(led <= 0) {
-		led = 2;
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	}
 }
