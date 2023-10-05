@@ -2026,3 +2026,17 @@
 
 
 2023-10-05 14:38:15,435 [INFO] Activator:178 - !SESSION log4j initialized
+2023-10-05 14:52:42,532 [INFO] Activator:177 - 
+
+
+2023-10-05 14:52:42,534 [INFO] Activator:178 - !SESSION log4j initialized
+2023-10-05 15:07:25,082 [INFO] Activator:177 - 
+
+
+2023-10-05 15:07:25,084 [INFO] Activator:178 - !SESSION log4j initialized
+2023-10-05 15:09:03,435 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://sw-center.st.com:443: The target server failed to respond
+2023-10-05 15:09:03,443 [INFO] RetryExec:113 - Retrying request to {s}->https://sw-center.st.com:443
+2023-10-05 15:09:12,870 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://sw-center.st.com:443: The target server failed to respond
+2023-10-05 15:09:12,872 [INFO] RetryExec:113 - Retrying request to {s}->https://sw-center.st.com:443
+2023-10-05 15:09:49,960 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://sw-center.st.com:443: The target server failed to respond
+2023-10-05 15:09:49,961 [INFO] RetryExec:113 - Retrying request to {s}->https://sw-center.st.com:443
