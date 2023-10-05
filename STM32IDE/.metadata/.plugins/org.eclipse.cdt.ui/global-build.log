@@ -398,3 +398,43 @@ Finished building: Timer_Interrupt.bin
 Finished building: Timer_Interrupt.list
  
  
+14:45:21 **** Incremental Build of configuration Debug for project Timer_Interrupt ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:240:5: error: variably modified 'led_buffer' at file scope
+  240 | int led_buffer[MAX_LED] = {1, 3, 5, 6};
+      |     ^~~~~~~~~~
+../Core/Src/main.c:240:31: warning: excess elements in array initializer
+  240 | int led_buffer[MAX_LED] = {1, 3, 5, 6};
+      |                               ^
+../Core/Src/main.c:240:31: note: (near initialization for 'led_buffer')
+../Core/Src/main.c:240:34: warning: excess elements in array initializer
+  240 | int led_buffer[MAX_LED] = {1, 3, 5, 6};
+      |                                  ^
+../Core/Src/main.c:240:34: note: (near initialization for 'led_buffer')
+../Core/Src/main.c:240:37: warning: excess elements in array initializer
+  240 | int led_buffer[MAX_LED] = {1, 3, 5, 6};
+      |                                     ^
+../Core/Src/main.c:240:37: note: (near initialization for 'led_buffer')
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+14:45:44 **** Incremental Build of configuration Debug for project Timer_Interrupt ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Timer_Interrupt.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\MCU_Lab\MCU_Lab2\STM32IDE\Timer_Interrupt\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Timer_Interrupt.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Timer_Interrupt.elf
+ 
+arm-none-eabi-size   Timer_Interrupt.elf 
+arm-none-eabi-objdump -h -S  Timer_Interrupt.elf  > "Timer_Interrupt.list"
+arm-none-eabi-objcopy  -O ihex  Timer_Interrupt.elf  "Timer_Interrupt.hex"
+   text	   data	    bss	    dec	    hex	filename
+   7664	     44	   1644	   9352	   2488	Timer_Interrupt.elf
+arm-none-eabi-objcopy  -O binary  Timer_Interrupt.elf  "Timer_Interrupt.bin"
+Finished building: default.size.stdout
+ 
+Finished building: Timer_Interrupt.hex
+Finished building: Timer_Interrupt.bin
+ 
+Finished building: Timer_Interrupt.list
+ 
+ 
