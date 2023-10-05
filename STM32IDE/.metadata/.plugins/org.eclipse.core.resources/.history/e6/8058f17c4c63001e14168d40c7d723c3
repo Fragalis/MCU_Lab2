@@ -227,13 +227,13 @@ enum State {
 };
 int counter = 50;
 enum State currentState = LED1;
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	switch (currentState) {
 	case LED1:
 		if(counter <= 0) {
 			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
 			counter = 50;
 			display7SEG(2);
 			currentState = LED2;
