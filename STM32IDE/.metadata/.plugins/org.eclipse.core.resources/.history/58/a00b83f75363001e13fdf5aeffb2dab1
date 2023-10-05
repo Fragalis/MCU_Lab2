@@ -245,7 +245,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	--counter;
 	if(counter <= 0) {
 		--led;
-		counter = 100;
+		counter = 50;
 		update7SEG(index_led++);
 		index_led = index_led % 4;
 	}
