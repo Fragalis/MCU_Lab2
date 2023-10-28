@@ -223,12 +223,19 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 enum State {
-	LED1, LED2
+	INIT, LED1, LED2
 };
 int counter = 50;
-enum State currentState = LED1;
+enum State currentState = INIT;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	switch (currentState) {
+	case INIT:
+		HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_SET);
+		counter = 50;
+		display7SEG(1);
+		currentState = LED1;
+		break;
 	case LED1:
 		if(counter <= 0) {
 			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
