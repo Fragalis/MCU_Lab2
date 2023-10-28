@@ -268,7 +268,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+enum State {
+	LED1, LED2, LED3, LED4
+};
 int counter = 100;
+enum State currentState = LED1;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 	timer_run();

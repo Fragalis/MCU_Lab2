@@ -122,23 +122,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	second++;
-	if(second >= 60) {
-	  minute++;
-	  second = 0;
-	}
-	if(minute >= 60) {
-	  hour++;
-	  minute = 0;
-	}
-	if(hour >= 24) {
-	  hour = 0;
-	}
-	updateClockBuffer();
-	if(timer0_flag == 1){
-		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-	}
-	setTimer0(1000);
+	  second++;
+	  if(second >= 60) {
+		  minute++;
+		  second = 0;
+	  }
+	  if(minute >= 60) {
+		  hour++;
+		  minute = 0;
+	  }
+	  if(hour >= 24) {
+		  hour = 0;
+	  }
+	  updateClockBuffer();
+	    if(timer0_flag == 1){
+	        HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	    }
+	    setTimer0(1000);
 	  /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -268,7 +268,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+enum State {
+	LED1, LED2, LED3, LED4
+};
 int counter = 100;
+enum State currentState = LED1;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 	timer_run();
