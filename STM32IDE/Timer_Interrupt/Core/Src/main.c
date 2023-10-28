@@ -230,15 +230,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-enum State {
-	LED1, LED2, LED3, LED4
-};
 const int MAX_LED = 4;
 int index_led = 0;
 int led_buffer[4] = {1, 3, 5, 6};
 int counter = 100;
 int led = 1;
-enum State currentState = LED1;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	--counter;
 	if(counter <= 0) {
