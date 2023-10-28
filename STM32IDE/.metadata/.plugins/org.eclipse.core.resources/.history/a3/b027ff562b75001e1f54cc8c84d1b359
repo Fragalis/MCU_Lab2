@@ -90,7 +90,11 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin|SEG4_Pin|SEG5_Pin|SEG6_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_SET);
+	display7SEG(1);
 
   /* USER CODE END 2 */
 
@@ -228,12 +232,22 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 enum State {
-	LED1, LED2, LED3, LED4
+	INIT, LED1, LED2, LED3, LED4
 };
 int counter = 50;
+int led = 2;
 enum State currentState = LED1;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	switch (currentState) {
+	case INIT:
+		HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_SET);
+		counter = 50;
+		display7SEG(1);
+		currentState = LED1;
+		break;
 	case LED1:
 		if(counter <= 0) {
 			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
@@ -241,6 +255,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_SET);
 			counter = 50;
+			--led;
 			display7SEG(2);
 			currentState = LED2;
 		}
@@ -252,9 +267,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_SET);
 			counter = 50;
+			--led;
 			display7SEG(3);
 			currentState = LED3;
-			HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
 		}
 		break;
 	case LED3:
@@ -264,6 +279,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_RESET);
 			counter = 50;
+			--led;
 			display7SEG(0);
 			currentState = LED4;
 		}
@@ -275,11 +291,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			HAL_GPIO_WritePin(GPIOA, EN2_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, EN3_Pin, GPIO_PIN_SET);
 			counter = 50;
+			--led;
 			display7SEG(1);
 			currentState = LED1;
-			HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
 		}
 		break;
+	}
+	if(led <= 0) {
+		HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
+		led = 2;
 	}
 	counter--;
 }
