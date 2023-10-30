@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="timerLED"/>
+		<item key="selection" value="MATRIX_"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="LED_"/>
 			<item value="timer0"/>
 			<item value="G_7SEG"/>
 			<item value="F_7SEG"/>
@@ -18,6 +19,7 @@
 			<item value="A_7SEG"/>
 		</list>
 		<list key="replacehistory">
+			<item value="MATRIX_"/>
 			<item value="timerLED"/>
 			<item value="SEG6"/>
 			<item value="SEG5"/>
